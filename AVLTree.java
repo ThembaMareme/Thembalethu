@@ -6,6 +6,7 @@
 public class AVLTree
 {
     BinaryTreeNode root;
+    private int opCounter;
 
    public int height ( BinaryTreeNode node )
    {
@@ -127,11 +128,15 @@ public class AVLTree
    }
    public BinaryDataFields find ( dataType d, BinaryTreeNode node )
    {
+      opCounter=0;  
       if (d.compareTo (node.data.getTerm()) == 0) 
          return node;
       else if (d.compareTo (node.data.getTerm()) < 0)
+         opCounter++;
          return (node.left == null) ? null : find (d, node.left);
+         
       else
+         opCounter++
          return (node.right == null) ? null : find (d, node.right);
    }
    
@@ -179,7 +184,7 @@ public class AVLTree
    {
       System.out.println (node.data);
    }
-   
+   public class getOpCounter(){return opCounter;}
 
 }
 
