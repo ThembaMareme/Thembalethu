@@ -87,7 +87,7 @@ public class AVLTree
       if (node == null) return null;
       if (d.compareTo (node.data.getTerm()) < 0)
          node.left = delete (d, node.left);
-      else if (d.compareTo (node.data) > 0)
+      else if (d.compareTo (node.data.getTerm()) > 0)
          node.right = delete (d, node.right);
       else
       {
@@ -126,18 +126,19 @@ public class AVLTree
       else
          return find (d, root);
    }
-   public BinaryDataFields find ( dataType d, BinaryTreeNode node )
+   public BinaryDataFields find (String d, BinaryTreeNode node )
    {
       opCounter=0;  
-      if (d.compareTo (node.data.getTerm()) == 0) 
-         return node;
-      else if (d.compareTo (node.data.getTerm()) < 0)
+      if (d.compareTo (node.data.getTerm()) == 0){ 
+         return node.data;}
+      else if (d.compareTo (node.data.getTerm()) < 0){
          opCounter++;
          return (node.left == null) ? null : find (d, node.left);
-         
-      else
-         opCounter++
+         }
+      else{
+         opCounter++;
          return (node.right == null) ? null : find (d, node.right);
+         }
    }
    
    public void treeOrder ()
@@ -184,7 +185,7 @@ public class AVLTree
    {
       System.out.println (node.data);
    }
-   public class getOpCounter(){return opCounter;}
+   public int getOpCounter(){return opCounter;}
 
 }
 

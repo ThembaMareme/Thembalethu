@@ -1,7 +1,15 @@
+import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.FileReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+
 public class ReadTextFile{
 
       private AVLTree avl;
-      private String firstFile;
+      private String file;
       private String secFile;
 
 public String read (String firstFile){
@@ -13,7 +21,7 @@ public String read (String firstFile){
       while (myReader.hasNextLine()) {
         String data = myReader.nextLine();
         BinaryDataFields obj = new BinaryDataFields(data); 
-       avl.insert(obj);        
+        avl.insert(obj);        
               }
       myReader.close();
       return "Knowledge base loaded successfully.";
@@ -27,11 +35,11 @@ public String read (String firstFile){
 }
 
 public String read2(String secFile){
-   String str;
-  if(firstFile!=null){
+   String str = "";
+  if(secFile!=null){
    try{
-      file = firstFile;
-      File myObj = new File(file);
+      this.secFile = secFile;
+      File myObj = new File(secFile);
       Scanner myReader = new Scanner(myObj);  
       while (myReader.hasNextLine()) {
         String data = myReader.nextLine();
@@ -53,4 +61,5 @@ public String read2(String secFile){
     else{System.exit(0);} 
     return "File not found";
 
+}
 }
