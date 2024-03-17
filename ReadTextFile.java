@@ -11,6 +11,13 @@ public class ReadTextFile{
       private AVLTree avl;
       private String file;
       private String secFile;
+      private String numStr;
+public ReadTextFile(){
+      avl = new AVLTree();
+      file = null;
+      secFile = null;
+      numStr="";
+}
 
 public String read (String firstFile){
  if(firstFile!=null){
@@ -44,11 +51,13 @@ public String read2(String secFile){
       while (myReader.hasNextLine()) {
         String data = myReader.nextLine();
         BinaryDataFields term = avl.find(data);
+        numStr += Integer.toString(avl.getOpCounter())+"\n";
+        avl.opCounter=0;
         if(term!=null){
          str += term.getTerm()+"\t"+term.getStatement()+"\t"+term.getConfi()+"\n";
         }
         else{
-        str += "Term not found: "+data;
+        str += "Term not found: "+data+"\n";
         }
         }
         myReader.close();
@@ -62,4 +71,5 @@ public String read2(String secFile){
     return "File not found";
 
 }
+public String getNumStr(){return numStr;}
 }
