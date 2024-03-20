@@ -128,7 +128,7 @@ public class AVLTree
    }
    public BinaryDataFields find (String d, BinaryTreeNode node )
    {
-      //opCounter=0;  
+      
       if (d.compareTo (node.data.getTerm()) == 0){ 
          return node.data;}
       else if (d.compareTo (node.data.getTerm()) < 0){

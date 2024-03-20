@@ -11,12 +11,17 @@ public class ReadTextFile{
       private AVLTree avl;
       private String file;
       private String secFile;
-      private String numStr;
+      private int numStr;
+      int count;
+      int fileSize;
+      String strDisplay;
 public ReadTextFile(){
       avl = new AVLTree();
       file = null;
       secFile = null;
-      numStr="";
+      numStr = 0;
+      fileSize = 0;
+      strDisplay="";
 }
 
 public String read (String firstFile){
@@ -40,19 +45,40 @@ public String read (String firstFile){
      else{System.exit(0);} 
   return "File not found";
 }
-
 public String read2(String secFile){
+ if(secFile!=null){
+ 
+ try{ 
+      this.secFile = secFile;
+      
+      File myObj = new File(secFile);
+      Scanner myReader = new Scanner(myObj); 
+      //FileWriter writer1 = new FileWriter("10.txt"); 
+      while (myReader.hasNextLine()) {
+      myReader.nextLine(); 
+      fileSize++;}
+      return "Query file is loaded successfully.";
+  }catch (FileNotFoundException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }}
+       
+  return "File not found";
+
+}
+public String search(){
    String str = "";
   if(secFile!=null){
    try{
-      this.secFile = secFile;
+      
       File myObj = new File(secFile);
-      Scanner myReader = new Scanner(myObj);  
-      while (myReader.hasNextLine()) {
+      Scanner myReader = new Scanner(myObj); 
+     while (myReader.hasNextLine()) {
         String data = myReader.nextLine();
         BinaryDataFields term = avl.find(data);
-        numStr += Integer.toString(avl.getOpCounter())+"\n";
-        avl.opCounter=0;
+        //numStr += avl.getOpCounter();
+        //avl.opCounter=0;
+        
         if(term!=null){
          str += term.getTerm()+"\t"+term.getStatement()+"\t"+term.getConfi()+"\n";
         }
@@ -71,5 +97,42 @@ public String read2(String secFile){
     return "File not found";
 
 }
-public String getNumStr(){return numStr;}
+
+
+public int getNumStr(){return numStr;}
+public int getFileSize(){return fileSize;}
+
+public void display(String num){
+    try{
+      count=0;
+      File myObj = new File(secFile);
+      Scanner myReader = new Scanner(myObj); 
+      //FileWriter writer1 = new FileWriter("10.txt"); 
+      while (myReader.hasNextLine()) {
+      if (count!=Integer.parseInt(num)){
+        String data = myReader.nextLine();
+        BinaryDataFields term = avl.find(data);
+        numStr += avl.getOpCounter();
+        avl.opCounter=0;
+
+        count++;}
+        else{break;}       
+              }
+      //writer1.close();
+      myReader.close();
+      
+     }catch (FileNotFoundException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
+    float average = numStr/count;
+    
+    
+display1(num+" The Average Number Of Comparisons: "+String.valueOf(average));
+
+}
+public void display1(String e){
+      strDisplay+=e+"\n";
+}
+public String getResults(){return strDisplay;}
 }
