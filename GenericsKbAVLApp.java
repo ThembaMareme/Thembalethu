@@ -18,17 +18,19 @@ while(true){
    String filename = JOptionPane.showInputDialog("Enter file name for AVL Tree:");//Display the option for the user to enter the file name.
    JOptionPane.showMessageDialog(null, fileObj.read(filename.trim()));
    String filename1 = JOptionPane.showInputDialog("Enter file name with queries:");
-      JOptionPane.showMessageDialog(null, fileObj.read2(filename1.trim()));}
+      JOptionPane.showMessageDialog(null, fileObj.read2(filename1.trim()));
+      fileObj.initialiseFile(filename,filename1);}
 else if (choice.trim().equals("2")){
    JOptionPane.showMessageDialog(null, fileObj.search());}
 else if(choice.trim().equals("3")){
    int n =fileObj.getFileSize();
     JOptionPane.showMessageDialog(null, "The file Size Of The Query is: "+Integer.toString(fileObj.getFileSize()));
    String size1;
+   fileObj.addToList();
    size1 =  JOptionPane.showInputDialog("Enter the new size (must be a multiple of 10 and not greater than "+Integer.toString(fileObj.getFileSize())+":");
    // if(size1.equals("Q") || size1.equals("Quit") || size1.equals("q") || size1.equals("quit")){System.exit(0);}
-   while (Integer.parseInt(size1)<n ){
-   fileObj.display(size1);
+   while (Integer.parseInt(size1)<n+1){
+   fileObj.insertShuffle(size1);
    
    size1 =  JOptionPane.showInputDialog("Enter the new size (must be a multiple of 10 and not greater than "+Integer.toString(n)+" or click (Q)uit:");
    if(size1.equals("Q") || size1.equals("Quit") || size1.equals("q") || size1.equals("quit")){break;}
