@@ -5,11 +5,15 @@ import java.io.FileReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.util.Collection;
+import java.util.Collections;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.*;
-
+/**
+*This class Read the text file that contains knowledge base statement.
+*It contains the methods that helps to tranverse the array that contains the objects of Arrays.
+*@auther MRMTHE008.
+*
+*/
 public class ReadTextFile{
 
       private AVLTree avl;
@@ -34,10 +38,22 @@ public ReadTextFile(){
       insertStr="The insertion results\n";
       searchStr="The search results\n";
 }
+/**
+*This method initialise the file & secFile instance variable
+*@param file1 accepts a String file name of the Knowlege dataset
+*@param file2 accepts a string file name of the queries 
+*/
 public void initialiseFile(String file1, String file2){
       file=file1;
       secFile = file2;
 }
+/**
+*This method reads through the file line by line then take those line that have been read to the class BinaryDataFields.
+*Creating objects of the BinaryDataFields class then put the object in the array of Arrays.
+*@param firstFile Accept a String file name of the Knowlege dataset.
+*@return a String if the file is finally found and it has read the whole file, return a String if the file is not found. 
+*/
+
 public String read (String firstFile){
  if(firstFile!=null){
    try{
@@ -61,6 +77,12 @@ public String read (String firstFile){
      else{System.exit(0);} 
   return "File not found";
 }
+/**
+*This method read line by line of the accepted file then increment the fileSize variable to calculate the size of the secFile. 
+*@param filename Accept a String file name of the Knowlege dataset.
+*@return a String if the file is finally found and it has read the whole file, return a String if the file is not found. 
+*/
+
 public String read2(String secFile){
  if(secFile!=null){
  
@@ -81,6 +103,10 @@ public String read2(String secFile){
   return "File not found";
 
 }
+/**
+*This method reads the second file the query file, read it line by line the, then use find to search for the item in the avl tree.
+*@return this returns the string which contains or show the results that where found in the AVLTree & that are not found.
+*/
 public String search(){
    String str = "";
   if(secFile!=null){
@@ -90,7 +116,7 @@ public String search(){
       Scanner myReader = new Scanner(myObj); 
      while (myReader.hasNextLine()) {
         String data = myReader.nextLine();
-        BinaryDataFields term = avl.find(data);  
+        BinaryDataFields term = avl.find(data);//Search for the term in the AVLTree  
         if(term!=null){
          str += term.getTerm()+"\t"+term.getStatement()+"\t"+term.getConfi()+"\n";
         }
@@ -114,56 +140,42 @@ public String search(){
 
 public int getNumStr(){return numStr;}
 public int getFileSize(){return fileSize;}
-
-// public void display(String num){
-//     try{
-//       count=0;
-//       File myObj = new File(secFile);
-//       Scanner myReader = new Scanner(myObj); 
-//       //FileWriter writer1 = new FileWriter("10.txt"); 
-//       while (myReader.hasNextLine()) {
-//       if (count!=Integer.parseInt(num)){
-//         String data = myReader.nextLine();
-//         BinaryDataFields term = avl.find(data);
-//         numStr += avl.getOpCounter();
-//         avl.opCounter=0;
-// 
-//         count++;}
-//         else{break;}       
-//               }
-//       //writer1.close();
-//       myReader.close();
-//       
-//      }catch (FileNotFoundException e) {
-//       System.out.println("An error occurred.");
-//       e.printStackTrace();
-//     }
-//     float average = numStr/count;
-//     
-//     
-// display1(num+" The Average Number Of Comparisons: "+String.valueOf(average));
-// 
-//  }
 public void display1(){
       strDisplay+=insertStr+"\n"+searchStr;
 }
+/**
+*This method get the results made for the comparisons
+*@return a string that shows the results
+*/
 public String getResults(){
 display1();
 return strDisplay;}
+/**
+*This method reads the first file, it reads it line by line then add those read lines to the ArrayList 
+*/
 public void addToList(){
          try{
       this.file = file;
       File myObj = new File(file);
-      Scanner myReader = new Scanner(myObj);
+      Scanner myReader = new Scanner(myObj);//reading the file
       while (myReader.hasNextLine()){
        String data = myReader.nextLine();
-       words.add(data);
+       words.add(data);//Adding the single lines read in the ArrayList 
        } myReader.close();
        } catch (FileNotFoundException e) {
       System.out.println("An error occurred.");
       e.printStackTrace();
     }
 }
+/**
+*This method take the elemets that where added to the ArrayList then Shuffle the whole ArrayList
+*It take the first specified elements, like the size variable specify how many elements should be taken, elements that where Shuffled in the ArrayList
+*Then insert the those number of specified element in the AVLTree
+*This reads the secFile the query file, then search those elemet in the AVLTree, while doing that keeps track number of operations that are being made.
+*Then it will repeart the process 5 times
+*Then initialize the String variable by increment the size and the average found for the operations made 
+*@param size accepts the size need for the method to run on 
+*/
 public void insertShuffle(String size){
       avl.clear();
       int num = Integer.parseInt(size);
@@ -198,6 +210,10 @@ public void insertShuffle(String size){
 insertStr+=size+" The Average Number Of Comparisons: "+String.valueOf(average2)+"\n";
 
 }
+/**
+*This method calculate the average of the comparisons
+*Increment the string by the size and the average comparisons made
+*/
 public void searchShuffle(String size){
 
  float average = numStr1/5;
