@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Tic tok</title>
+  </head>
+  <style>
+    /*
+      SPACING SYSTEM (px)
+      2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+      FONT SIZE SYSTEM (px)
+      10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+      */
+    /*
+      MAIN COLOR: #087f5b
+      GREY COLOR: #343a40
+      */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .container {
+      color: #3d3838;
+    }
+    /* .overlay {
+      background: rgba(0, 0, 0, 0.3);
+      /* display: none;
+    } */
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #343a40;
+      display: flex;
+      justify-content: center;
+    }
+    table {
+      margin-top: 60px;
+
+      width: 500px;
+      height: 500px;
+      /* border: 1px solid #343a40; */
+      border-collapse: separate;
+      border-spacing: 5px;
+      margin-left: 100px;
+      margin-right: 100px;
+      table-layout: fixed;
+    }
+    th {
+      border-radius: 25px;
+      border-top: 2px solid #035e08;
+      padding: 0;
+      text-align: center;
+      vertical-align: middle;
+      box-shadow: 0 12px 24px rgba(36, 35, 35, 0.25);
+    }
+    .link-btn {
+      border-radius: 25px;
+      width: 100%;
+      height: 100%;
+      border: none;
+      padding: 0;
+      box-sizing: border-box;
+      overflow: auto;
+    }
+    .fa-xmark {
+      color: #da0b0b;
+
+      font-size: 150px; /* Set the font size of the icon */
+      display: block;
+      line-height: 0; /* Prevent the icon from shifting vertically */
+      text-align: center;
+      /* transform: scaleX(0.6); */
+    }
+    .fa-circle {
+      color: #0b75a7;
+      display: block;
+      font-size: 150px;
+      text-align: center;
+      line-height: 0;
+    }
+    .fdk-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 30%;
+      height: 22%;
+      border-radius: 30px;
+      padding: 20px;
+      background-color: rgba(70, 67, 67, 0.5); /* Dark overlay */
+      box-shadow: 0px 4px 6px rgba(151, 149, 149, 0.2);
+      /* backdrop-filter: blur(5px); Adds blur to the background */
+
+      z-index: 1;
+      display: none;
+    }
+    .hidden {
+      display: none;
+    }
+    .box-content {
+      margin-top: 20px;
+
+      display: block;
+      /* text-align: center; */
+      /* line-height: 0; */
+      display: flex;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+        sans-serif;
+      /* font-size: 20px;*/
+      justify-content: center;
+      align-items: center;
+    }
+    .text {
+      color: #e1e6ebcb;
+      font-size: 21px;
+    }
+  </style>
+  <body id="body1">
+    <div class="container" id="overlay">
+      <table>
+        <tr>
+          <th>
+            <button id="btn1" class="btn link-btn text-btn-x"></button>
+          </th>
+          <th>
+            <button id="btn2" class="btn link-btn text-btn-x"></button>
+          </th>
+          <th>
+            <button id="btn3" class="btn link-btn text-btn-x"></button>
+          </th>
+        </tr>
+        <tr>
+          <th>
+            <button id="btn4" class="btn link-btn text-btn-o"></button>
+          </th>
+          <th>
+            <button id="btn5" class="btn link-btn text-btn-x"></button>
+          </th>
+          <th>
+            <button id="btn6" class="btn link-btn text-btn-o"></button>
+          </th>
+        </tr>
+        <tr>
+          <th>
+            <button id="btn7" class="btn link-btn text-btn-o"></button>
+          </th>
+          <th>
+            <button id="btn8" class="btn link-btn text-btn-o"></button>
+          </th>
+          <th>
+            <button id="btn9" class="btn link-btn text-btn-o"></button>
+          </th>
+        </tr>
+      </table>
+    </div>
+    <div id="feedback-box" class="fdk-box hidden">
+      <div id="content" class="box-content">
+        <p class="text"></p>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
